@@ -1,0 +1,371 @@
+@import '@fontsource-variable/source-serif-4';
+@import '@fontsource-variable/public-sans';
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/fraunces/wght-italic.css';
+@import '@fontsource-variable/dm-sans';
+@import 'tailwindcss';
+
+/* Brand colors and fonts. Change a value here and it updates across the site. */
+@theme {
+  --color-primary-50: #eef6f7;
+  --color-primary-100: #d7eaec;
+  --color-primary-300: #8fc2c9;
+  --color-primary-600: #1a7482;
+  --color-primary-700: #14606e;
+  --color-primary-800: #0f4c58;
+  --color-primary-900: #0b3a44;
+
+  --color-accent-100: #fbeedd;
+  --color-accent-300: #f2b56b;
+  --color-accent-500: #e0943a;
+  --color-accent-700: #99530f;
+
+  --color-mist-50: #f7f8f7;
+  --color-mist-100: #eff1f0;
+  --color-mist-200: #dfe3e1;
+
+  --color-ink-900: #17211f;
+  --color-ink-600: #4b5754;
+
+  --font-display: 'Source Serif 4 Variable', Georgia, serif;
+  --font-sans: 'Public Sans Variable', system-ui, sans-serif;
+
+  --shadow-card: 0 1px 3px rgb(11 58 68 / 0.08), 0 8px 24px rgb(11 58 68 / 0.06);
+  --shadow-glow: 0 10px 30px rgb(224 148 58 / 0.25);
+
+  --animate-fade-up: fade-up 0.7s ease-out both;
+  --animate-fade-in: fade-in 0.9s ease-out both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-marquee: marquee 45s linear infinite;
+
+  /* Home page brand: cream base, emerald primary, coral and lilac accents. */
+  --color-fern-50: #eef8f3;
+  --color-fern-100: #d5eee2;
+  --color-fern-300: #8ed0b4;
+  --color-fern-600: #1c7d62;
+  --color-fern-700: #136650;
+  --color-fern-800: #0e5240;
+  --color-fern-900: #0a3f32;
+  --color-fern-950: #05281f;
+
+  --color-coral-100: #fde6de;
+  --color-coral-300: #f9b19c;
+  --color-coral-500: #e85f40;
+  --color-coral-700: #a93c21;
+
+  --color-lilac-100: #ece8fb;
+  --color-lilac-300: #cfc6f3;
+
+  --color-cream-50: #fdf9f1;
+  --color-cream-100: #f7f0e3;
+  --color-cream-200: #ebe1cf;
+
+  --color-bark-900: #1c2a25;
+  --color-bark-600: #4f5d57;
+
+  --font-headline: 'Fraunces Variable', Georgia, serif;
+  --font-body: 'DM Sans Variable', system-ui, sans-serif;
+
+  --shadow-stamp: 7px 7px 0 #0a3f32;
+  --shadow-stamp-coral: 7px 7px 0 #e85f40;
+  --shadow-paper: 0 22px 40px -22px rgb(7 44 35 / 0.45);
+
+  --animate-wipe-in: wipe-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-bloom: bloom 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-morph: morph 14s ease-in-out infinite;
+  --animate-drift: drift 70s linear infinite;
+  --animate-quote-in: quote-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-sheet-up: sheet-up 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes wipe-in {
+    from {
+      clip-path: inset(0 0 100% 0);
+    }
+    to {
+      clip-path: inset(-1rem);
+    }
+  }
+
+  @keyframes bloom {
+    from {
+      opacity: 0;
+      transform: scale(0.86);
+    }
+  }
+
+  @keyframes morph {
+    50% {
+      border-radius: 44% 56% 38% 62% / 58% 42% 58% 42%;
+    }
+  }
+
+  @keyframes drift {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes quote-in {
+    from {
+      opacity: 0;
+      transform: translateX(32px);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes float {
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-mist-50 font-sans text-ink-900 antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-balance;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-500;
+  }
+
+  /* Keep the page still behind an open modal. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility page-gutter {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center rounded-sm bg-accent-500 px-6 py-3 font-semibold text-ink-900 transition-colors hover:bg-accent-300;
+}
+
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center rounded-sm border border-primary-800 px-5 py-2.5 font-semibold text-primary-800 transition-colors hover:bg-primary-800 hover:text-white;
+}
+
+/* Fern brand, active on the routes listed in FERN_ROUTES (see Layout). It remaps the theme tokens, so the
+   header, footer and shared components pick it up. Other pages keep the original look. */
+.theme-fern {
+  --color-primary-50: var(--color-fern-50);
+  --color-primary-100: var(--color-fern-100);
+  --color-primary-300: var(--color-fern-300);
+  --color-primary-600: var(--color-fern-600);
+  --color-primary-700: var(--color-fern-700);
+  --color-primary-800: var(--color-fern-800);
+  --color-primary-900: var(--color-fern-900);
+
+  --color-accent-100: var(--color-coral-100);
+  --color-accent-300: var(--color-coral-300);
+  --color-accent-500: var(--color-coral-500);
+  --color-accent-700: var(--color-coral-700);
+
+  --color-mist-50: var(--color-cream-50);
+  --color-mist-100: var(--color-cream-100);
+  --color-mist-200: var(--color-cream-200);
+
+  --color-ink-900: var(--color-bark-900);
+  --color-ink-600: var(--color-bark-600);
+
+  --font-display: var(--font-headline);
+  --font-sans: var(--font-body);
+
+  --radius-sm: 999px;
+  --radius-md: 999px;
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
+
+  background-color: var(--color-cream-50);
+  color: var(--color-bark-900);
+  font-family: var(--font-body);
+
+  /* Blobs and slide-in reveals start past the screen edge. clip, not hidden: hidden would make
+     this a scroll container, and sticky elements inside it would stop sticking. */
+  overflow-x: clip;
+}
+
+/* A pill radius would cut into the corners of a modal. */
+.theme-fern dialog {
+  --radius-sm: 1.75rem;
+}
+
+/* Field is shared with the login and sign-up forms, so its look inside a fern form is set here:
+   softly rounded rather than a pill, which would suit the textarea badly, with a clear border. */
+.fern-fields {
+  --radius-sm: 1.25rem;
+  --color-mist-200: var(--color-fern-900);
+}
+
+/* Long-form text inside a policy section. */
+.policy-copy p {
+  margin-top: 1rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-bark-600);
+}
+
+.policy-copy h3 {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-fern-950);
+}
+
+.policy-copy ul {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.policy-copy li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-bark-600);
+}
+
+.policy-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0.25rem;
+  top: 0.65em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background-color: var(--color-coral-500);
+}
+
+.policy-copy strong {
+  font-weight: 700;
+  color: var(--color-fern-950);
+}
+
+.policy-copy a {
+  font-weight: 700;
+  color: var(--color-fern-800);
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: var(--color-coral-500);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.policy-copy a:hover {
+  color: var(--color-coral-700);
+}
+
+@utility fern-frame {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-8 lg:px-12;
+}
+
+@utility pill-coral {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-coral-500 px-7 py-3.5 font-bold text-fern-950 transition-colors duration-300 hover:bg-fern-900 hover:text-cream-50;
+}
+
+@utility pill-fern {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-fern-900 px-7 py-3.5 font-bold text-cream-50 transition-colors duration-300 hover:bg-coral-500 hover:text-fern-950;
+}
+
+@utility pill-line {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-fern-900 px-7 py-3 font-bold text-fern-900 transition-colors duration-300 hover:bg-fern-900 hover:text-cream-50;
+}
+
+@utility pill-line-light {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-cream-50/60 px-7 py-3 font-bold text-cream-50 transition-colors duration-300 hover:border-cream-50 hover:bg-cream-50 hover:text-fern-900;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Scroll reveals. The hidden states only exist when motion is allowed, so reduced-motion users
+   always see the content in place. */
+@media (prefers-reduced-motion: no-preference) {
+  .unveil {
+    transition:
+      clip-path 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+      opacity 0.9s ease;
+  }
+
+  .unveil[data-effect='wipe'] {
+    clip-path: inset(-3rem);
+  }
+
+  .unveil[data-effect='wipe'][data-shown='false'] {
+    clip-path: inset(-3rem -3rem 100% -3rem);
+  }
+
+  .unveil[data-effect='left'][data-shown='false'] {
+    opacity: 0;
+    transform: translateX(-56px);
+  }
+
+  .unveil[data-effect='right'][data-shown='false'] {
+    opacity: 0;
+    transform: translateX(56px);
+  }
+
+  .unveil[data-effect='scale'][data-shown='false'] {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
