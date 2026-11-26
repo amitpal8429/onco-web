@@ -17,9 +17,9 @@ export const DUMMY_MARKER = 'Dummy content, live se pehle badlein'
 // Set to false once all site copy is final. This hides the banner at the top of every page.
 export const SHOW_DUMMY_BANNER = false
 
-// The Doctors page lists dummy doctors, so its route and nav link only exist in development. Switch
-// to true once the real list from the TL is in src/data/oncologyDoctors.js.
-export const SHOW_DOCTORS = import.meta.env.DEV
+// The Doctors page lists dummy doctors. Set to true to show the route and nav link in production.
+// Switch back to import.meta.env.DEV or remove the dummy data once the real list is in src/data/oncologyDoctors.js.
+export const SHOW_DOCTORS = true
 
 export const navLinks = [
   { to: '/', label: 'Home' },
